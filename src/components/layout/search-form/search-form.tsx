@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/input";
 import React, { ComponentProps } from "react";
 import { Search } from "lucide-react";
 import useFetch from "@/hooks/useFetch";
-import { FETCH_LIST_PRODUCT, FETCH_PRODUCT } from "@/constants/api";
+import { FETCH_LIST_PRODUCT } from "@/constants/api";
 import { useNavigate } from "react-router-dom";
 import { ListProductsParams } from "@/interfaces/list-products";
 
@@ -16,6 +16,7 @@ const SearchForm = (props: ComponentProps<"form">) => {
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    if (search && data?.results) navigate("/products", { state: { data, error, loading } });
   }
 
   return (
