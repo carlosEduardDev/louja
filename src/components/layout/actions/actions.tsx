@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Actions = () => {
   return (
     <nav className="flex gap-3">
-      <Link to="/products">
+      <Link to="/shop-cart">
         <ShoppingBag />
       </Link>
       <Link to="/favorites">
