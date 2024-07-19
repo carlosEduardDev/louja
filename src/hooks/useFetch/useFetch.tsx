@@ -2,7 +2,7 @@ import React from "react";
 
 function useFetch<T>(url: RequestInfo | URL, options?: RequestInit) {
   const [data, setData] = React.useState<T | null>(null);
-  const [loading, setLoading] = React.useState(false);
+  const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState<string | null>(null);
 
   React.useEffect(() => {
@@ -23,7 +23,7 @@ function useFetch<T>(url: RequestInfo | URL, options?: RequestInit) {
         }
       } catch (error) {
         if (error instanceof Error) {
-          setError(error.message), setData(null), setLoading(false);
+          setError(error.message), setData(null)
         }
       }
 
