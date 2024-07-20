@@ -7,8 +7,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { FETCH_LIST_PRODUCT } from "@/constants/api";
-import useFetch from "@/hooks/useFetch";
 import { ListProductsParams } from "@/interfaces/list-products";
 import formatCurrencyBRL from "@/utils/formatCurrency";
 import replaceThumb from "@/utils/replaceThumb";
