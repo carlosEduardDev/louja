@@ -10,6 +10,7 @@ import {
 import { ListProductsParams } from "@/interfaces/list-products";
 import formatCurrencyBRL from "@/utils/formatCurrency";
 import replaceThumb from "@/utils/replaceThumb";
+import { Heart } from "lucide-react";
 
 const Products = ({ data }: { data: ListProductsParams }) => {
   return (
@@ -19,17 +20,18 @@ const Products = ({ data }: { data: ListProductsParams }) => {
           key={result.id}
           style={{ animation: "fade 1s linear forwards", opacity: 0 }}
         >
-          <CardHeader>
+          <CardHeader className="relative">
+            <Heart className="absolute right-4 top-4 cursor-pointer text-button" />
             <img
               src={replaceThumb(result.thumbnail)}
               className="w-full sm:pb-4"
             />
             <CardTitle></CardTitle>
-            <CardDescription className="text-2xl font-semibold text-button">
+            <CardDescription className="sm:text-2xl text-xl font-semibold text-button">
               {formatCurrencyBRL(result.price)}
             </CardDescription>
           </CardHeader>
-          <CardContent>
+          <CardContent className="h-[40px] overflow-hidden mb-4">
             <p>{result.title.substring(0, 27).concat("...")}</p>
           </CardContent>
           <CardFooter>

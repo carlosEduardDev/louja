@@ -3,6 +3,7 @@ import { Input } from "@/components/ui/input";
 import React from "react";
 import { Search } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { scrollTop } from "@/utils/scrollTop";
 
 const SearchForm = (props: React.ComponentProps<"form">) => {
   const [valueSearch, setValueSearch] = React.useState("");
@@ -16,6 +17,7 @@ const SearchForm = (props: React.ComponentProps<"form">) => {
       inputRef.current.focus();
       navigate(`/products/${valueSearch}`);
       setValueSearch("");
+      scrollTop()
     }
   }
 
