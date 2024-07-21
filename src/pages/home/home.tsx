@@ -18,6 +18,12 @@ const HomePage = () => {
   const category4 = useFetch<ListProductsParams>(
     FETCH_CATEGORY + randomCategory[3].category
   );
+  const category5 = useFetch<ListProductsParams>(
+    FETCH_CATEGORY + randomCategory[4].category
+  );
+  const category6 = useFetch<ListProductsParams>(
+    FETCH_CATEGORY + randomCategory[5].category
+  );
 
   if (category1.loading) return <LoadingCarrousel />;
 
@@ -27,6 +33,8 @@ const HomePage = () => {
       {category2.data && <CategoryCarrousel category={category2.data} id={1} />}
       {category3.data && <CategoryCarrousel category={category3.data} id={2} />}
       {category4.data && <CategoryCarrousel category={category4.data} id={3} />}
+      {category5.data && <CategoryCarrousel category={category5.data} id={4} />}
+      {category6.data && <CategoryCarrousel category={category6.data} id={5} />}
     </section>
   );
 };
