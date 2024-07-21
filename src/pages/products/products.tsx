@@ -2,11 +2,16 @@ import { FETCH_CATEGORY, FETCH_LIST_PRODUCT } from "@/constants/api";
 import useFetch from "@/hooks/useFetch";
 import { ListProductsParams } from "@/interfaces/list-products";
 import { useParams } from "react-router-dom";
-import SkeletonProducts from "@/components/layout/skeleton-products";
-import Products from "@/components/layout/products";
+import SkeletonProducts from "@/pages/products/components/products/skeleton-products";
+import Products from "@/pages/products/components/products/products";
 import { randomCategory } from "@/constants/category-list";
+import { scrollTop } from "@/utils/scrollTop";
+import React from "react";
 
 const ProductsPage = () => {
+  React.useEffect(() => {
+    scrollTop();
+  }, []);
   const { id } = useParams();
 
   const { data, error, loading } = useFetch<ListProductsParams>(
@@ -14,7 +19,9 @@ const ProductsPage = () => {
   );
 
   const { data: dataNotSearch, loading: loadingNotSearch } =
-    useFetch<ListProductsParams>(FETCH_CATEGORY + randomCategory[0]);
+    useFetch<ListProductsParams>(FETCH_CATEGORY + randomCategory[0].category);
+
+    console.log(dataNotSearch)
 
   if (loading)
     return (
