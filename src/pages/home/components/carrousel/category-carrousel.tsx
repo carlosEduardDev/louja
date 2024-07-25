@@ -83,7 +83,7 @@ const CategoryCarrousel = ({ category, id }: ICarrousel) => {
           ))}
         </CarouselContent>
         <CarouselPrevious className="left-1 sm:-left-4 md:-left-7 lg:-left-10 xl:-left-16"/>
-        <CarouselNext className="right-1 sm:-right-4 md:-right-7 lg:-right-10 xl:-right-16"/>
+        <CarouselNext className="right-1 sm:-right-4 md:-right-7 lg:-right-10 xl:-right-16" />
       </Carousel>
       <Link
         className="text-primary font-semibold underline float-right pt-2"

@@ -19,12 +19,38 @@ import { FETCH_PRODUCT } from "@/constants/api";
 import useFetch from "@/hooks/useFetch";
 import { ProductParams } from "@/interfaces/product";
 import formatCurrencyBRL from "@/utils/formatCurrency";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import SkeletonProduct from "./components/skeleton-product";
+import { GlobalContext } from "@/store/globalStorage";
+import React from "react";
+import { ContextProps } from "@/store/interfaces";
+import { useToast } from "@/components/ui/use-toast";
+import { ToastAction } from "@/components/ui/toast";
 
 const ProductPage = () => {
   const { id } = useParams();
   const { data, loading } = useFetch<ProductParams>(FETCH_PRODUCT + id);
+  const navigate = useNavigate();
+  const [{ shopCar, setShopCar }] = React.useContext(
+    GlobalContext
+  ) as ContextProps;
+  const { toast } = useToast();
+
+  function handleSetShopCar() {
+    const filter = shopCar.filter((obj) => obj.id === data?.id);
+
+    if (data && !filter.length) {
+      setShopCar([
+        ...shopCar,
+        {
+          id: data.id,
+          img: data.thumbnail,
+          price: data.price,
+          title: data.title,
+        },
+      ]);
+    }
+  }
 
   if (loading) return <SkeletonProduct />;
 
@@ -75,7 +101,7 @@ const ProductPage = () => {
               </DialogHeader>
               <ul className="grid lg:grid-cols-2">
                 {data?.attributes.map((att) => (
-                  <li className="md:text-base text-sm mb-2">
+                  <li className="md:text-base text-sm mb-2" key={att.name}>
                     <span className="font-medium">{att.name}</span>:{" "}
                     {att.value_name}
                   </li>
@@ -123,10 +149,28 @@ const ProductPage = () => {
             </div>
             <div className="sm:flex mb-8 sm:mb-0">
               <Button className="bg-button w-full sm:w-auto mb-2 sm:mb-0 border-2 border-transparent text-sm sm:text-lg hover:bg-background hover:border-button hover:border-2 hover:text-button sm:mr-4">
-                Ver no Mercado Livre&reg;
+                <a href={data.permalink} target="_blank">
+                  Ver no Mercado Livre&reg;
+                </a>
               </Button>
-              <Button className="bg-button w-full sm:w-auto text-sm sm:text-lg border-2 border-transparent hover:bg-background hover:border-button hover:border-2 hover:text-button">
-                Adicionar ao carrinho
+              <Button
+                disabled={
+                  shopCar.filter((obj) => obj.id === data?.id).length === 1
+                }
+                className="bg-button w-full sm:w-auto text-sm sm:text-lg border-2 border-transparent hover:bg-background hover:border-button hover:border-2 hover:text-button"
+                onClick={() => {
+                  handleSetShopCar();
+                  toast({
+                    title: "Produto adicionado a sacola!",
+                    action: (
+                      <ToastAction altText="Ir" onClick={() => navigate('/shop-car')}>Ir para a sacola</ToastAction>
+                    ),
+                  });
+                }}
+              >
+                {shopCar.filter((obj) => obj.id === data?.id).length
+                  ? "Item adicionado a sacola"
+                  : "Adicionar a sacola"}
               </Button>
             </div>
           </div>

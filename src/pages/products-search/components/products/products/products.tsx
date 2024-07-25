@@ -17,7 +17,7 @@ const Products = ({ data }: { data: ListProductsParams }) => {
   return (
     <section className="py-4 lg:px-28 md:px-18 sm:px-8 px-4 grid gap-8 sm:grid-cols-[repeat(auto-fill,minmax(230px,1fr))] grid-cols-2">
       {data.results.map((product) => (
-        <Link to={`/product/${product.id}`}>
+        <Link to={`/product/${product.id}`} key={product.id}>
           <Card
             key={product.id}
             style={{ animation: "fade 1s linear forwards", opacity: 0 }}
