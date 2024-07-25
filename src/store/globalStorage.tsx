@@ -1,14 +1,10 @@
-import React, { PropsWithChildren } from "react";
+import React from "react";
 
 export const GlobalContext = React.createContext({});
 
-export const GlobalStorage = ({ children }: PropsWithChildren) => {
-  const [shopCar, setShopCar] = React.useState([
-    { id: "", img: "", title: "", price: 0 },
-  ]);
-  const [favorites, setFavorites] = React.useState([
-    { id: "", img: "", title: "", price: 0 },
-  ]);
+export const GlobalStorage = ({ children }: React.PropsWithChildren) => {
+  const [shopCar, setShopCar] = React.useState([]);
+  const [favorites, setFavorites] = React.useState([]);
 
   return (
     <GlobalContext.Provider

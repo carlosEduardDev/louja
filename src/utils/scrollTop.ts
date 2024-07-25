@@ -1,3 +1,1 @@
-export function scrollTop() {
-  window.scrollTo({ top: 0 });
-}
+export const scrollTop = () => window.scrollTo({ top: 0 });
