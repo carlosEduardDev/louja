@@ -15,9 +15,9 @@ const SearchForm = (props: React.ComponentProps<"form">) => {
     if (valueSearch && inputRef.current) {
       inputRef.current.value = "";
       inputRef.current.focus();
-      navigate(`/products/${valueSearch}`);
+      navigate(`/products-search/${valueSearch}`);
       setValueSearch("");
-      scrollTop()
+      scrollTop();
     }
   }
 
