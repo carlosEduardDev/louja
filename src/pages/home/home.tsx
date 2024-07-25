@@ -3,7 +3,7 @@ import { randomCategory } from "@/constants/category-list";
 import useFetch from "@/hooks/useFetch";
 import { ListProductsParams } from "@/interfaces/list-products";
 import CategoryCarrousel from "./components/carrousel";
-import LoadingCarrousel from "./components/skeleton/skeleton-home";
+import LoadingCarrousel from "./components/skeleton-home/skeleton-home";
 
 const HomePage = () => {
   const category1 = useFetch<ListProductsParams>(

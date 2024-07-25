@@ -3,8 +3,9 @@ import App from "./App";
 import HomePage from "./pages/home";
 import ShopCartPage from "./pages/shop-cart";
 import FavoritesPage from "./pages/favorites";
-import ProductsPage from "./pages/products";
+import ProductsSearchPage from "./pages/products-search";
 import ErrorPage from "./pages/notfound";
+import ProductPage from "./pages/product/product";
 
 const router = createBrowserRouter([
   {
@@ -25,8 +26,12 @@ const router = createBrowserRouter([
         element: <FavoritesPage />,
       },
       {
-        path: "/products/:id",
-        element: <ProductsPage />,
+        path: "/products-search/:id",
+        element: <ProductsSearchPage />,
+      },
+      {
+        path: "/product/:id",
+        element: <ProductPage />,
       },
     ],
   },

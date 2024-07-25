@@ -2,16 +2,17 @@ import { FETCH_CATEGORY, FETCH_LIST_PRODUCT } from "@/constants/api";
 import useFetch from "@/hooks/useFetch";
 import { ListProductsParams } from "@/interfaces/list-products";
 import { useParams } from "react-router-dom";
-import SkeletonProducts from "@/pages/products/components/products/skeleton-products";
-import Products from "@/pages/products/components/products/products";
+import SkeletonProducts from "@/pages/products-search/components/products/skeleton-products-search";
+import Products from "@/pages/products-search/components/products/products";
 import { randomCategory } from "@/constants/category-list";
 import { scrollTop } from "@/utils/scrollTop";
 import React from "react";
 
-const ProductsPage = () => {
+const ProductsSearchPage = () => {
   React.useEffect(() => {
     scrollTop();
   }, []);
+
   const { id } = useParams();
 
   const { data, error, loading } = useFetch<ListProductsParams>(
@@ -20,8 +21,6 @@ const ProductsPage = () => {
 
   const { data: dataNotSearch, loading: loadingNotSearch } =
     useFetch<ListProductsParams>(FETCH_CATEGORY + randomCategory[0].category);
-
-    console.log(dataNotSearch)
 
   if (loading)
     return (
@@ -51,7 +50,7 @@ const ProductsPage = () => {
       </>
     );
 
-  if (error && error !== "signal is aborted without reason")
+  if (error)
     return (
       <section className="py-6 lg:px-28 md:px-18 sm:px-8 px-4">
         <h1 className="text-xl py-6 lg:px-28 md:px-18 sm:px-8 px-4 text-gray-600">
@@ -74,4 +73,4 @@ const ProductsPage = () => {
   );
 };
 
-export default ProductsPage;
+export default ProductsSearchPage;
