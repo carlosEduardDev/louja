@@ -29,7 +29,7 @@ const FavoritesPage = () => {
           Meus Favoritos
         </h1>
         <h1 className="text-lg">
-          Você ainda não adicionou nenhum item a sua sacola...
+          Você ainda não adicionou nenhum item aos favoritos...
         </h1>
       </section>
     );
