@@ -23,17 +23,15 @@ function useFetch<T>(url: RequestInfo | URL, options?: RequestInit) {
         }
       } catch (error) {
         if (error instanceof Error) {
-          setError(error.message), setData(null)
+          setError(error.message), setData(null);
         }
       }
-
     };
     fetchData();
 
     return () => {
       controller.abort();
     };
-    
   }, [url]);
 
   return { data, loading, error };

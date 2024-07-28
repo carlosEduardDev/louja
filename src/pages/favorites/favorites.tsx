@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/table";
 import { ToastAction } from "@/components/ui/toast";
 import { useToast } from "@/components/ui/use-toast";
+import useLocalStorage from "@/hooks/useLocalStorage";
 import { GlobalContext } from "@/store/globalStorage";
 import { ContextProps } from "@/store/interfaces";
 import { ShoppingBag, Trash } from "lucide-react";
@@ -20,7 +21,13 @@ const FavoritesPage = () => {
   const navigate = useNavigate();
   const [{ shopCar, setShopCar }, { favorites, setFavorites }] =
     React.useContext(GlobalContext) as ContextProps;
-  console.log(favorites);
+  const { setState: setLocalProducts } = useLocalStorage("products", "");
+  const { setState: setLocalFavorites } = useLocalStorage("favorites", "");
+
+  React.useEffect(() => {
+    setLocalProducts(JSON.stringify(shopCar));
+    setLocalFavorites(JSON.stringify(favorites));
+  }, [shopCar, favorites]);
 
   if (!favorites.length)
     return (

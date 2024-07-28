@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/carousel";
 import { useToast } from "@/components/ui/use-toast";
 import { randomCategory } from "@/constants/category-list";
+import useLocalStorage from "@/hooks/useLocalStorage";
 import { ListProductsParams } from "@/interfaces/list-products";
 import { GlobalContext } from "@/store/globalStorage";
 import { ContextProps } from "@/store/interfaces";
@@ -34,6 +35,11 @@ const CategoryCarrousel = ({ category, id }: ICarrousel) => {
   const [_, { favorites, setFavorites }] = React.useContext(
     GlobalContext
   ) as ContextProps;
+  const { setState: setLocalFavorites } = useLocalStorage("favorites", "");
+
+  React.useEffect(() => {
+    setLocalFavorites(JSON.stringify(favorites));
+  }, [favorites]);
 
   const { toast } = useToast();
 

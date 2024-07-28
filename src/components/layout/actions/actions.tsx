@@ -12,7 +12,7 @@ const Actions = () => {
   const { pathname } = useLocation();
   return (
     <nav className="flex gap-3">
-      <Link to="/">
+      <Link to="/" className="sm:block hidden">
         <House />
       </Link>
 

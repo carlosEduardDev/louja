@@ -16,13 +16,19 @@ import {
 } from "@/components/ui/table";
 import { Trash } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
+import useLocalStorage from "@/hooks/useLocalStorage";
 
 const ShopCartPage = () => {
   const [{ shopCar, setShopCar }] = React.useContext(
     GlobalContext
   ) as ContextProps;
+  const { setState } = useLocalStorage("products", "");
   const navigate = useNavigate();
   const { toast } = useToast();
+
+  React.useEffect(() => {
+    setState(JSON.stringify(shopCar));
+  }, [shopCar]);
 
   if (!shopCar.length)
     return (
@@ -88,6 +94,7 @@ const ShopCartPage = () => {
                       title: "Produto deletado.",
                       variant: "destructive",
                     });
+                    setState(JSON.stringify(shopCar));
                   }}
                 >
                   <Trash size={"20px"} />
