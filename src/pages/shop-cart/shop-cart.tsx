@@ -15,14 +15,15 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Trash } from "lucide-react";
+import { useToast } from "@/components/ui/use-toast";
 
 const ShopCartPage = () => {
   const [{ shopCar, setShopCar }] = React.useContext(
     GlobalContext
   ) as ContextProps;
   const navigate = useNavigate();
+  const { toast } = useToast();
 
-  console.log(shopCar, setShopCar);
   if (!shopCar.length)
     return (
       <section className="lg:py-16 lg:px-28 md:px-18 sm:px-8 px-4 items-center gap-20 justify-center flex lg:flex-row flex-col mt-32">
@@ -79,11 +80,15 @@ const ShopCartPage = () => {
               <TableCell className="w-4">
                 <Button
                   variant={"ghost"}
-                  onClick={() =>
+                  onClick={() => {
                     setShopCar([
                       ...shopCar.filter((prod) => prod.id !== item.id),
-                    ])
-                  }
+                    ]);
+                    toast({
+                      title: "Produto deletado.",
+                      variant: "destructive",
+                    });
+                  }}
                 >
                   <Trash size={"20px"} />
                 </Button>
