@@ -26,15 +26,21 @@ import React from "react";
 import { ContextProps } from "@/store/interfaces";
 import { useToast } from "@/components/ui/use-toast";
 import { ToastAction } from "@/components/ui/toast";
+import useLocalStorage from "@/hooks/useLocalStorage";
 
 const ProductPage = () => {
   const { id } = useParams();
+  const { setState } = useLocalStorage("products", "");
   const { data, loading } = useFetch<ProductParams>(FETCH_PRODUCT + id);
   const navigate = useNavigate();
   const [{ shopCar, setShopCar }] = React.useContext(
     GlobalContext
   ) as ContextProps;
   const { toast } = useToast();
+
+  React.useEffect(() => {
+    setState(JSON.stringify(shopCar));
+  }, [shopCar]);
 
   function handleSetShopCar() {
     const filter = shopCar.filter((obj) => obj.id === data?.id);
@@ -163,7 +169,12 @@ const ProductPage = () => {
                   toast({
                     title: "Produto adicionado a sacola!",
                     action: (
-                      <ToastAction altText="Ir" onClick={() => navigate('/shop-car')}>Ir para a sacola</ToastAction>
+                      <ToastAction
+                        altText="Ir"
+                        onClick={() => navigate("/shop-car")}
+                      >
+                        Ir para a sacola
+                      </ToastAction>
                     ),
                   });
                 }}

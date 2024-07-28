@@ -8,6 +8,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { useToast } from "@/components/ui/use-toast";
+import useLocalStorage from "@/hooks/useLocalStorage";
 import { ListProductsParams } from "@/interfaces/list-products";
 import { GlobalContext } from "@/store/globalStorage";
 import { ContextProps } from "@/store/interfaces";
@@ -21,6 +22,11 @@ const Products = ({ data }: { data: ListProductsParams }) => {
   const [_, { favorites, setFavorites }] = React.useContext(
     GlobalContext
   ) as ContextProps;
+  const { setState: setLocalFavorites } = useLocalStorage("favorites", "");
+
+  React.useEffect(() => {
+    setLocalFavorites(JSON.stringify(favorites));
+  }, [favorites]);
 
   const { toast } = useToast();
 

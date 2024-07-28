@@ -3,8 +3,12 @@ import React from "react";
 export const GlobalContext = React.createContext({});
 
 export const GlobalStorage = ({ children }: React.PropsWithChildren) => {
-  const [shopCar, setShopCar] = React.useState([]);
-  const [favorites, setFavorites] = React.useState([]);
+  const [shopCar, setShopCar] = React.useState(
+    JSON.parse(localStorage.getItem("products") as string) || []
+  );
+  const [favorites, setFavorites] = React.useState(
+    JSON.parse(localStorage.getItem("favorites") as string) || []
+  );
 
   return (
     <GlobalContext.Provider
