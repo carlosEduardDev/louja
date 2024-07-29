@@ -7,7 +7,7 @@
       name="description"
       content="Sistema de ecommerce usando a API do Mercado Livre"
     />
-    <link rel="manifest" href="./pwa/manifest.json" />
+    <link rel="manifest" href="./manifest.json" />
     <meta property="og:title" content="Louja" />
     <meta property="og:type" content="website" />
     <meta
@@ -29,7 +29,7 @@
     <div id="root"></div>
     <script>
       if (typeof navigator.serviceWorker !== "undefined") {
-        navigator.serviceWorker.register("./pwa/serviceWorker.js");
+        navigator.serviceWorker.register("./serviceWorker.js");
       }
     </script>
     <script type="module" src="/src/main.tsx"></script>
