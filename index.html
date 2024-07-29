@@ -27,7 +27,11 @@
   </head>
   <body>
     <div id="root"></div>
-    <script src="./pwa/serviceWorker.js"></script>
+    <script>
+      if (typeof navigator.serviceWorker !== "undefined") {
+        navigator.serviceWorker.register("./pwa/serviceWorker.js");
+      }
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
