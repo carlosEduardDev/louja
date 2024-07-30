@@ -1,10 +1,10 @@
-# Louja;
+# Louja
 
 **Sistema de ecommerce usando a [API do Mercado Livre&reg;](https://api.mercadolibre.com/sites/MLB/)**.
 
 Esse site é uma versão 2.0 de outro sistema ecommerce que eu já projetei, o [Ecommerce Livre](https://github.com/carlosEduardDev/ecommerce-livre)
 
-A mudança não foi apenas no design, mas sim na estruturação do projeto, práticas mais acertivas e performáticas, implementaçâo de PWA, etc.
+A mudança não foi apenas no design, mas sim na estruturação do projeto, práticas mais acertivas e performáticas, implementação de PWA, etc.
 
 [![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](http://shields.io/)
 [Visite o site!](https://louja-delta.vercel.app/)
