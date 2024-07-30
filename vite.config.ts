@@ -15,7 +15,7 @@ export default defineConfig({
       manifest: {
         name: "Louja",
         short_name: "Louja",
-        theme_color: "#ffffff",
+        theme_color: "#2563eb",
         background_color: "#2563eb",
         icons: [
           {
