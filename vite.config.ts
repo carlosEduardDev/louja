@@ -16,7 +16,7 @@ export default defineConfig({
         name: "Louja",
         short_name: "Louja",
         theme_color: "#2563eb",
-        background_color: "#2563eb",
+        background_color: "#ffffff",
         icons: [
           {
             src: "pwa-64x64.png",
