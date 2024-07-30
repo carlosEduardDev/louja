@@ -15,8 +15,8 @@ export default defineConfig({
       manifest: {
         name: "Louja",
         short_name: "Louja",
-        theme_color: "#ffffff",
-        background_color: "#2563eb",
+        theme_color: "#2563eb",
+        background_color: "#ffffff",
         icons: [
           {
             src: "windows11/SmallTile.scale-100.png",
